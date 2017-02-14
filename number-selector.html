@@ -32,7 +32,7 @@
                 },
             countDisplay: function() {
                 var initial_val = this.getAttribute("value") || 0;
-                this.counter = initial_val;
+                this.counter = parseInt(initial_val);  // Convert string to integer
                 return initial_val;
             },
             increment: function() {
