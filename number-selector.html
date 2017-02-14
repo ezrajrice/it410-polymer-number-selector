@@ -1,0 +1,55 @@
+<link rel="import" href="./bower_components/polymer/polymer.html">
+<link rel="import" href="./bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="./bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="number-selector">
+
+    <template>
+
+        <style>
+            /* local DOM styles go here */
+            :host {
+            display: inline-block;
+            }
+        </style>
+
+        <!-- local DOM goes here -->
+        <div is="dom-repeat">
+            <paper-icon-button icon="add-circle-outline" on-tap="increment"></paper-icon-button>
+            <counter>[[countDisplay()]]</counter>
+            <paper-icon-button icon="remove-circle-outline" on-tap="decrement"></paper-icon-button>
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'number-selector',
+                properties: {
+                    counter: {
+                        type: Number,
+                        value: 0
+                    }
+                },
+            countDisplay: function() {
+                var initial_val = this.getAttribute("value") || 0;
+                this.counter = initial_val;
+                return initial_val;
+            },
+            increment: function() {
+                var max = this.getAttribute("maximum");
+                if (this.counter < max || max == null) {
+                    this.counter += 1;
+                }
+                this.querySelector("counter").innerHTML = this.counter;
+            },
+            decrement: function() {
+                var min = this.getAttribute("minimum");
+                if (this.counter > min || min == null) {
+                    this.counter -= 1;
+                }
+                this.querySelector("counter").innerHTML = this.counter;
+            }
+        });
+    </script>
+
+</dom-module>
